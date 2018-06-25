@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)file:///Users/user/Documents/Test.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <script src="./Test_files/jquery-3.3.1.min.js"></script>
+<link href="./Test_files/css" rel="stylesheet">
+<style>
+html {
+  height: 100%;
+}
+p {
+  font-family: 'Anton';
+  font-size: 25px;
+  }
+body {
+   height: 100%;
+   background: #94a4a6;
+   background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)); 
+   background: -webkit-linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+   background: -moz-linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+   text-align: center;
+  }
+
+button {
+    font-family: 'Anton';
+    font-size: 25px;
+    border: 2px black solid;
+    color: black;
+    background:#f0fbf0;
+    padding: 0 10px 0 10px;
+  }
+  img {
+    margin: 0 auto;
+  }
+  .setting {
+    margin: 10px auto;
+  }
+  
+  .moove {
+    position: absolute;
+    top: 200px;
+    left: 45%;
+  }
+</style>
+</head>
+
+<body>
+  <h1>How stupid are you ?</h1>
+  <button class="now">Time</button>
+  <button class="rand">Rand</button>
+  <button class="green">Green</button>
+  <p id="demo"></p>
+  <img id="retardAlert" src='https://media.giphy.com/media/aSTJbOerwCKqc/giphy.gif' style="display:none;"/> 
+  <h2 id="h2"></h2>
+  <button id="moove" class="moove">huhuhu</button>
+  <div class="setting">
+    <button class="reset">Reset</button> 
+    <button class="test">Test</button>
+  </div>
+
+<script>
+  var d = new Date();
+  var stupidity = 0;
+  var spam = 0;
+  var display= false;
+  //mouse over change <p> color
+  function mouseOverDate() {
+    document.getElementById("demo").style.color = "red";
+    }
+  function mouseOutDate() {
+    document.getElementById("demo").style.color = "black";
+    }
+  document.getElementById("demo").onmouseover = function() {mouseOverDate()};
+  document.getElementById("demo").onmouseout = function() {mouseOutDate()};
+
+  // Display actual date 
+  $('button.now').click(function() {
+  document.getElementById("demo").innerHTML = d;
+  $('button.now').hide();
+  });
+  //Test button 
+  $('button.test').click(function() {
+     spam = spam + 1;
+    if (spam >= 6 && display == false) {
+      document.getElementById("h2").innerHTML = " Omg stop spaming -_- '";
+      display = true;
+    }
+  });
+  // Random background color
+  $("button.rand").click(function() {
+  // assign each named color a random number 0-255
+    let red = Math.floor(Math.random() * 255);
+    let green = Math.floor(Math.random() * 255);
+    let blue = Math.floor(Math.random() * 255); 
+    //This affect background
+    let randomRGBA = 'rgba('+red+','+green+','+blue+',1)';
+    //this affect font
+    var Red = Math.floor(Math.random() * 255);
+    var Green = Math.floor(Math.random() * 255);
+    var Blue = Math.floor(Math.random() * 255); 
+    var RandomRGBA = 'rgba('+Red+','+Green+','+Blue+',1)';
+   // change background color in css
+  $("body").css("background", randomRGBA);
+  $("button").css("color", RandomRGBA);
+  });
+  //Green button
+  $("button.green").click(function() {
+    var greenScreen = 'rgba(0,255,100,1)';
+    $("body").css("background", greenScreen);
+    $("button").css("color", greenScreen);
+    $("button").css("background", greenScreen);
+    document.getElementById("demo").innerHTML = " What did you expect ?! ";
+
+  });
+   //Reset button
+   $("button.reset").click(function() {
+    $("body").css("background", '#94a4a6');
+    $("button").css("color", '#000000');
+    $("button").css("background", '#f0fbf0');
+    $('button.now').show();
+    $('button.test').show();
+    $('button.moove').css("top",200+"px");
+    $('button.moove').css("left", "45%");
+    document.getElementById("moove").innerHTML="huhuhu";
+    document.getElementById("h2").innerHTML = "";
+    document.getElementById("demo").innerHTML = "";
+    document.getElementById("retardAlert").style.display='none';
+    stupidity = 0;
+    spam = 0;
+    display= false;
+   });
+   $("button.moove").mouseover(function() {
+    var leftMoove = Math.floor(Math.random() * 500)+"px";
+    var topMoove = Math.floor(Math.random() * 500)+"px";
+    stupidity = stupidity + 1;
+    document.getElementById("demo").innerHTML = " Stupidity level " + stupidity;
+    document.getElementById("moove").style.position = "absolute"; 
+    document.getElementById("moove").style.top = topMoove ;
+    document.getElementById("moove").style.left = leftMoove ;
+    document.getElementById("moove").innerHTML="dont follow me !";
+    if (stupidity >= 10) {
+      document.getElementById("retardAlert").style.display='block';
+      stupidity = 0;
+      setTimeout(function() {
+       document.getElementById('retardAlert').style.display='none'
+       }, 5*1000);
+    }
+   });
+    
+</script>
+
+</body>
+</html>
